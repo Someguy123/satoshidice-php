@@ -37,9 +37,8 @@ PAYAMT is the amount you're willing to stake as a minimum
 bet.
 
 CHANCE is a chance defined in function.php
-There are 3 chances that are already available
-with the script:
-QUAR - Simulates a LESSTHAN 16000 game of satoshidice
-HALF - Simulates a LESSTHAN 32000 game of satoshidice
-3QUAR - Simulates a LESSTHAN 48000 game of satoshdice
+Check the file for more details, They're based off of the
+payouts available on satoshidice.com
+
+8k, 12k, 16k, 24k, 32k, 33k, 48k, 64k
 
