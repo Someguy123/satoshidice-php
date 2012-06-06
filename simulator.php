@@ -27,22 +27,21 @@ while ($i < $rounds)
 	$rand = substr(str_shuffle(str_repeat('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
 		5)), 0, 64);
 	echo "\n\n{$balance} - Round {$i} - Betting {$bet}\n";
+	if ($bet > $maxbet[$chance])
+	{
+		// We've hit the maximum bet for this chance, lets drop back to min_bet
+		echo "Dropping back to minimum bet ( {$payamt} ), we've gone over the max bet.\n";
+		$bet = $payamt; // Set back to minbet
+	}
 	$data = simulpay($bet, $chance, $rand);
 	$balance = $balance - $bet;
 	echo "{$balance} - Betted...\n";
-	if ($data)
+	if ($data) // If we get a response
 	{
-		if ($data == "MAX_BET")
-		{
-			$bet = $payamt; // Drop back to minbet
-			echo "!-!-! WARNING: MAX BET HIT - DROPPING TO MINBET !-!-!\n\n";
-		} else
-		{
-			$bet = $payamt;
-			$won++;
-			$balance = $balance + $data;
-			echo "{$balance} - WON: {$won}/{$i}\n\n";
-		}
+		$bet = $payamt;
+		$won++;
+		$balance = $balance + $data;
+		echo "{$balance} - WON: {$won}/{$i}\n\n";
 	} else
 	{
 		$bet = $bet * 2; // Double bet
