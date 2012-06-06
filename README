@@ -1,0 +1,45 @@
+### INFO
+This is just some basic satoshidice simulation files in PHP to aid in simulating a large amout
+of satoshidice games in order to figure out the best strategy.
+They were created by Someguy123 and I would appreciated if you donated:
+
+###     BTC: 1SomguYYsdeBFYv9ujGt1V64PwssXco5z
+###     LTC: LSomguyTSwcw3hZKFts4P453sPfn4Y5Jzv
+
+These scripts are for simulating satoshidice games using the martingale betting strategy
+The simulpay() and roll_dice() functions can be used in any way, not just martingale.
+
+### LICENSING
+These files are released into the public domain under UNLICENSE,
+this means you can share, modify, and even sell to your own
+desires and I won't sue you or take action on such.
+
+### FILES
+
+- function.php
+        This file contains core functions and settings needed
+        in order for the simulator to work.
+
+- simulator.php
+        This file is the actual martingale simulation bot that
+        uses the function simulpay() in function.php to
+        simulate a satoshidice game using the martingale
+        betting strategy.
+
+- HOW TO USE
+
+To use the simulator, simply type:
+php simulator.php ROUNDS PAYAMT CHANCE
+ROUNDS is the amount of rounds you want to bot to play
+before stopping
+
+PAYAMT is the amount you're willing to stake as a minimum
+bet.
+
+CHANCE is a chance defined in function.php
+There are 3 chances that are already available
+with the script:
+QUAR - Simulates a LESSTHAN 16000 game of satoshidice
+HALF - Simulates a LESSTHAN 32000 game of satoshidice
+3QUAR - Simulates a LESSTHAN 48000 game of satoshdice
+
