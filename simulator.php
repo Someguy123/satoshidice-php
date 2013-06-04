@@ -6,10 +6,12 @@ $rounds = $_SERVER['argv'][1];
 $payamt = $_SERVER['argv'][2];
 $chance = $_SERVER['argv'][3];
 // Predefine variables
-$balance = 100;
+$balance = 1;
 $i = 0;
 $bet = $payamt;
 $won = 0;
+$currwin = 0;
+$bestwin = 0;
 $tx = 0.0005; // Change this to the current average fee per TX.
 $totaltx = 0;
 while ($i < $rounds)
@@ -28,7 +30,7 @@ while ($i < $rounds)
 	$i++;
 	$rand = substr(str_shuffle(str_repeat('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
 		5)), 0, 64);
-	echo "\n\n{$balance} - Round {$i} - Betting {$bet} + {$tx} txfee\n";
+	echo "\n{$balance} - Round {$i} - Betting {$bet} + {$tx} txfee\n";
 	if ($bet > $maxbet[$chance])
 	{
 		// We've hit the maximum bet for this chance, lets drop back to min_bet
@@ -43,13 +45,16 @@ while ($i < $rounds)
 	{
 		$bet = $payamt;
 		$won++;
+		$currwin++;
 		$balance = $balance + $data;
-		echo "{$balance} - WON: {$won}/{$i}\n\n";
+		$bestwin = ($currwin > $bestwin) ? $currwin : $bestwin;
+		echo "{$balance} - WON: {$won}/{$i}\n";
 	} else
 	{
+		$currwin = 0;
 		$bet = $bet * 2; // Double bet
-		echo "{$balance} - LOSE!\n\n";
+		echo "{$balance} - LOSE!\n";
 	}
+	echo "Current win streak: " . $currwin . "\nBest win streak: " . $bestwin . "\n\n";
 }
-
 ?>
